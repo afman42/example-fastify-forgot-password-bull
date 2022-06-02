@@ -9,9 +9,19 @@ export class AuthService {
         this.repository = AppDataSource.getRepository(User)
     }
 
-    checkEmail(email: string){
-        return this.repository.findOne({
+    async checkEmail(email: string){
+        return await this.repository.findOne({
             where: { email }
         })
+    }
+
+    async checkHashCode(code: string){
+        return await this.repository.findOne({
+            where: { hashCode: code}
+        })
+    }
+
+    async updateAndAddHashCode(data: any){
+        return await this.repository.save(data);
     }
 }

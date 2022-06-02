@@ -24,7 +24,9 @@ export class User1654059818002 implements MigrationInterface {
                 },
                 {
                     name: "hashCode",
-                    type: 'varchar'
+                    type: 'varchar',
+                    isNullable: true,
+                    default: null
                 },
                 {
                     name: 'created_at',

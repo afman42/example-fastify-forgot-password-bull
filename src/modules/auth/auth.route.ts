@@ -1,6 +1,6 @@
 import { FastifyError, FastifyInstance, FastifyPluginOptions } from "fastify";
 import { AuthController } from "./auth.controller";
-import { postSchemaForgotPassword } from "./auth.schema";
+import { postSchemaChangePassword, postSchemaForgotPassword } from "./auth.schema";
 import { AuthService } from "./auth.services";
 
 function authRoutes(
@@ -10,6 +10,7 @@ function authRoutes(
 ) {
   let authController = new AuthController(new AuthService());
   app.post('/',postSchemaForgotPassword,authController.forgotPassword.bind(authController))
+  app.put('/forgot/:code',postSchemaChangePassword,authController.changePassword.bind(authController))
 
   done();
 }
